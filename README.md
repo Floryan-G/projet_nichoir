@@ -54,8 +54,8 @@ Le schéma de câblage montre comment les composants du **Nichoir Connecté** so
 
 Le PCB (circuit imprimé) a été conçu pour assurer une connectivité stable et une gestion efficace de l'alimentation. Ce circuit imprime permet de connecter tous les composants électroniques du nichoir de manière compacte et organisée.
 
-*Image du PCB à insérer ici.*
-
+![PCBTop](graphics/PCBTop.png)
+![PCBBottom](graphics/PCBBottom.png)
 ---
 
 
