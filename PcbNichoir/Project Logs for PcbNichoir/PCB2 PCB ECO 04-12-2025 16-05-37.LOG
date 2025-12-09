@@ -1,0 +1,2 @@
+Change Component Designator: OldDesignator=IC1 NewDesignator=PirSensor
+Change Net Name : Old Net Name=NetIC1_1 New Net Name=NetPirSensor_1

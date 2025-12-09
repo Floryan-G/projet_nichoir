@@ -1,0 +1,20 @@
+Removed Pin From Net: NetName=+3 Pin=VR1-1
+Removed Pin From Net: NetName=NetIC1_6 Pin=VR1-2
+Removed Pin From Net: NetName=+3 Pin=VR2-1
+Removed Pin From Net: NetName=NetIC1_1 Pin=VR2-2
+Removed Member From Class: ClassName=Sheet1 Member=VR1
+Removed Member From Class: ClassName=Sheet1 Member=VR2
+Added Component: Designator=VR?(PTN10E20HB20)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://www.sameskydevices.com/product/resource/supplyframepdf/ptn10.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height"; Value = "6.2mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Same Sky"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "PTN10-E20HB20"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "179-PTN10-E20HB20"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/CUI-Devices/PTN10-E20HB20?qs=vvQtp7zwQdNJZy18bg52oA%3D%3D"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetIC1_1 Pin=VR?-A1
+Added Pin To Net: NetName=NetIC1_6 Pin=VR?-A1
+Added Pin To Net: NetName=+3 Pin=VR?-S1
+Added Pin To Net: NetName=+3 Pin=VR?-S1
+Added Member To Class: ClassName=Sheet1 Member=Component VR? PTN10-E20HB20

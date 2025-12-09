@@ -1,0 +1,41 @@
+Added Component: Designator=DS?(LUMX-SML-LX1206YC-TR_V)
+Add component (AddParameter): Name = "Catalog Drawings"; Value = "SML-LX1206SeriesTopSML-LX1206SeriesSideSML-LX1206SeriesBottomSML-LX1206SeriesFootprint"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Category"; Value = "Optoelectronics"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Color"; Value = "Yellow"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Current - Test"; Value = "20mA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet URL"; Value = "http://www.lumex.com/content/files/ProductAttachment/SML-LX1206YC-TR.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Version"; Value = "Rev. K, 08/2012"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Family"; Value = "LEDIndication-Discrete"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Features"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height (Max)"; Value = "1.10mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lens Color"; Value = "Colorless"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lens Style/Size"; Value = "RectanglewithFlatTop"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lens Transparency"; Value = "Clear"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Lumex"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer URL"; Value = "http://www.lumexinstruments.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Millicandela Rating"; Value = "6mcd"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Technology"; Value = "SurfaceMount"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Type"; Value = "SurfaceMount"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Online Catalog"; Value = "SML-LX1206RectanglewithFlatTop1206PackageLEDs"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Other Names"; Value = "67-1358-2LU60357TRSMLLX1206YCTR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package / Case"; Value = "1206(3216Metric)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Description"; Value = "2-Pin Surface Mount Device, Body 3.2 x 1.5 mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Reference"; Value = "SML-LX1206YC-TR"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Tape&Reel(TR)"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Product Training Modules"; Value = "LEDsBenefitsofCustomLEDandLCDTechnology"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS Information"; Value = "RoHSCertofCompliance"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Series"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Size / Dimension"; Value = "3.20mmLx1.60mmW"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Standard Package"; Value = "3,000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Device Package"; Value = "1206"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Viewing Angle"; Value = "160°"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage - Forward (Vf) (Typ)"; Value = "2.1V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Wavelength - Dominant"; Value = "-"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Wavelength - Peak"; Value = "585nm"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=Sheet1 Member=Component C? C1206C107M9PACTU
+Added Member To Class: ClassName=Sheet1 Member=Component DS? SML-LX1206YC-TR
+Added Member To Class: ClassName=Sheet1 Member=Component R? CRGP1206F10K
+Added Member To Class: ClassName=Sheet1 Member=Component R? CRGP1206F10K
+Added Member To Class: ClassName=Sheet1 Member=Component R? CRGP1206F10K
+Added Member To Class: ClassName=Sheet1 Member=Component R? CRGP1206F10K
+Added Member To Class: ClassName=Sheet1 Member=Component VR? 10k

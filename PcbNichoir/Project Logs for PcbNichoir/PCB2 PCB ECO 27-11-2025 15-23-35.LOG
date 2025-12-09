@@ -1,0 +1,47 @@
+Added Component: Designator=AUX?(TS-75x70)
+Add component (AddParameter): Name = "Manufacturer"; Value = "Phoenix Contact"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer Part Number"; Value = "1984617"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MOQ"; Value = "1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "Mouser"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number"; Value = "651-1984617"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Unit Price"; Value = "0.55"; VariantName = "[No Variations]"
+Added Component: Designator=AUX?(TS-75x70)
+Add component (AddParameter): Name = "Manufacturer"; Value = "Phoenix Contact"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer Part Number"; Value = "1984617"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MOQ"; Value = "1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier"; Value = "Mouser"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Part Number"; Value = "651-1984617"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Supplier Unit Price"; Value = "0.55"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+3 Pin=C?-1
+Added Pin To Net: NetName=+3 Pin=C?-1
+Added Pin To Net: NetName=+3 Pin=R?-2
+Added Pin To Net: NetName=+3 Pin=VR?-1
+Added Pin To Net: NetName=+3 Pin=VR?-1
+Added Net: Name=+3
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=C?-2
+Added Pin To Net: NetName=GND Pin=DS?-2
+Added Pin To Net: NetName=GND Pin=R?-1
+Added Pin To Net: NetName=GND Pin=R?-1
+Added Pin To Net: NetName=GND Pin=R?-1
+Added Net: Name=GND
+Added Pin To Net: NetName=NetDS?_1 Pin=DS?-1
+Added Pin To Net: NetName=NetDS?_1 Pin=R?-2
+Added Net: Name=NetDS?_1
+Added Pin To Net: NetName=NetR?_1 Pin=R?-1
+Added Pin To Net: NetName=NetR?_1 Pin=R?-2
+Added Net: Name=NetR?_1
+Added Pin To Net: NetName=NetR?_2 Pin=R?-2
+Added Pin To Net: NetName=NetR?_2 Pin=VR?-3
+Added Net: Name=NetR?_2
+Add Net: Net with name "NetR?_2" already exists
+Added Member To Class: ClassName=Sheet1 Member=Component AUX?
+Added Member To Class: ClassName=Sheet1 Member=Component AUX?
+Added Member To Class: ClassName=Sheet1 Member=Component C? C1206C107M9PACTU
+Added Member To Class: ClassName=Sheet1 Member=Component R? CRGP1206F10K
+Added Member To Class: ClassName=Sheet1 Member=Component R? CRGP1206F10K
+Added Member To Class: ClassName=Sheet1 Member=Component R? CRGP1206F10K
+Added Member To Class: ClassName=Sheet1 Member=Component R? CRGP1206F10K
+Added Member To Class: ClassName=Sheet1 Member=Component VR? 10k
+Added Rule: Name=Schematic Supply Nets
+Added Rule: Name=Schematic Supply Nets_1

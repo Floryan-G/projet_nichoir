@@ -1,0 +1,7 @@
+Change Component Designator: OldDesignator=AUX? NewDesignator=Gpio
+Change Component Designator: OldDesignator=AUX? NewDesignator=Vin
+Added Pin To Net: NetName=NetOutCap Pin=Gpio-2
+Added Net: Name=NetOutCap
+Added Member To Class: ClassName=Sheet1 Member=Component Gpio
+Added Member To Class: ClassName=Sheet1 Member=Component R1 CRGP1206F10K
+Added Member To Class: ClassName=Sheet1 Member=Component VR1 10k

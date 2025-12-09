@@ -1,0 +1,39 @@
+Change Component Designator: OldDesignator=C? NewDesignator=C1
+Change Component Designator: OldDesignator=C? NewDesignator=C2
+Change Component Designator: OldDesignator=R? NewDesignator=R1
+Change Component Designator: OldDesignator=R? NewDesignator=R2
+Change Component Designator: OldDesignator=R? NewDesignator=R3
+Change Component Designator: OldDesignator=R? NewDesignator=R4
+Change Component Designator: OldDesignator=R? NewDesignator=R5
+Change Component Designator: OldDesignator=VR? NewDesignator=VR1
+Change Component Designator: OldDesignator=VR? NewDesignator=VR2
+Change Component Description : Designator=VR2 Old Description=Trimmer, Cermet, Rest 10 Kilohms, PCB, 1 Turns, Pwr-Rtg 0.5 W, Tol 10% New Description=Trimmer, Cermet, Rest 10 Kilohms, PCB, 1 Turns, Pwr-Rtg 0.5 W, Tol 10% | Bourns 3362P-1-103LF
+Change Component Description : Designator=VR1 Old Description=Trimmer, Cermet, Rest 10 Kilohms, PCB, 1 Turns, Pwr-Rtg 0.5 W, Tol 10% New Description=Trimmer, Cermet, Rest 10 Kilohms, PCB, 1 Turns, Pwr-Rtg 0.5 W, Tol 10% | Bourns 3362P-1-103LF
+Added Component: Designator=IC1(5578)
+Add component (AddParameter): Name = "Arrow Part Number"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Arrow Price/Stock"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Link"; Value = "https://cdn-shop.adafruit.com/product-files/5578/C17724.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height"; Value = "4.4mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Adafruit"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "5578"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Part Number"; Value = "485-5578"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Adafruit/5578?qs=T%252BzbugeAwji3%252BSdFXYinnQ%3D%3D"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+3 Pin=AUX?-1
+Added Pin To Net: NetName=GND Pin=AUX?-2
+Added Pin To Net: NetName=+3 Pin=IC1-4
+Change Net Name : Old Net Name=NetR?_1 New Net Name=NetR2_1
+Change Net Name : Old Net Name=NetR?_2 New Net Name=NetR1_2
+Added Pin To Net: NetName=NetLed Pin=AUX?-1
+Added Pin To Net: NetName=NetLed Pin=R5-1
+Added Net: Name=NetLed
+Added Pin To Net: NetName=NetR4_2 Pin=R4-2
+Added Pin To Net: NetName=NetR4_2 Pin=VR2-3
+Added Net: Name=NetR4_2
+Added Member To Class: ClassName=Sheet1 Member=Component AUX?
+Added Member To Class: ClassName=Sheet1 Member=Component C2 C1206C107M9PACTU
+Added Member To Class: ClassName=Sheet1 Member=Component IC1 5578
+Added Member To Class: ClassName=Sheet1 Member=Component R2 CRGP1206F10K
+Added Member To Class: ClassName=Sheet1 Member=Component R3 CRGP1206F10K
+Added Member To Class: ClassName=Sheet1 Member=Component R4 CRGP1206F10K
+Added Member To Class: ClassName=Sheet1 Member=Component R5 CRGP1206F10K
+Added Member To Class: ClassName=Sheet1 Member=Component VR2 10k

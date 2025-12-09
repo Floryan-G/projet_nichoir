@@ -1,0 +1,25 @@
+Removed Pin From Net: NetName=+3 Pin=VR1-1
+Removed Pin From Net: NetName=NetIC1_6 Pin=VR1-2
+Removed Pin From Net: NetName=+3 Pin=VR2-1
+Removed Pin From Net: NetName=NetIC1_1 Pin=VR2-2
+Removed Member From Class: ClassName=Sheet1 Member=VR1
+Removed Member From Class: ClassName=Sheet1 Member=VR2
+Added Component: Designator=R?(TRIM_PTN10-E500SB20)
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/PTN10-E500SB20/Same+Sky/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Same Sky"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "PTN10-E500SB20"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "Package"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/PTN10-E500SB20/Same+Sky/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=R?(TRIM_PTN10-E500SB20)
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/PTN10-E500SB20/Same+Sky/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Same Sky"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "PTN10-E500SB20"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "Package"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/PTN10-E500SB20/Same+Sky/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+3 Pin=R?-E
+Added Pin To Net: NetName=NetIC1_1 Pin=R?-S
+Added Pin To Net: NetName=NetIC1_6 Pin=R?-S
+Added Member To Class: ClassName=Sheet1 Member=Component R? PTN10-E500SB20
+Added Member To Class: ClassName=Sheet1 Member=Component R? PTN10-E500SB20
