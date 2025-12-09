@@ -2,7 +2,7 @@
 # Nichoir Connecté
 
 ## Description
-
+![Logo](graphics/Logo.png)
 Le projet **NichoirGPT4** est un dispositif IoT destiné à surveiller l'activité d'un nichoir pour oiseaux. Ce système utilise un **M5StackTimerCam** pour capturer des images et envoyer ces données à un serveur via le protocole **MQTT**. Les images et les données sont stockées dans une base de données **MariaDB** et peuvent être consultées via une interface web dédiée.
 
 ### Objectif
