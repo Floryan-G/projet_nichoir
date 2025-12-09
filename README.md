@@ -38,8 +38,7 @@ Le boîtier du **Nichoir Connecté** a été conçu pour être résistant aux in
 - **Matériau** : Boîtier en PETG résistant aux UV et aux intempéries.
 - **Emplacement des composants** : L'ESP32 TimerCam, la batterie et le capteur PIR sont intégrés à l'intérieur du boîtier pour une protection optimale.
 
-*Image ou Schéma du boîtier à insérer ici.*
-
+![BoxV2Design](graphics/BoxV2Design.png)
 ---
 
 ## Schéma
