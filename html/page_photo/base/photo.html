@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Détail photo</title>
+</head>
+<body>
+
+    <h2>Détail de la capture</h2>
+
+    {% if data.chemin_photo %}
+        <!-- Affiche la photo -->
+        <img src="/photo/{{ data.chemin_photo.split('/')[-1] }}" style="width:40%;">
+    {% else %}
+        <p>Aucune photo pour cette entrée.</p>
+    {% endif %}
+
+    <!-- Informations supplémentaires -->
+    <p><b>Date :</b> {{ data.date_heure }}</p>
+    <p><b>Batterie :</b> {{ data.niveau_batterie }} V</p>
+    <p><b>Appareil :</b> {{ data.emplacement }}
+       (Service : {{ "ON" if data.en_service else "OFF" }})</p>
+
+    <a href="/">Retour à la galerie</a>
+
+</body>
+</html>
