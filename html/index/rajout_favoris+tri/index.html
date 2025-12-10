@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Galerie Nichoir</title>
+    <style>
+        body { font-family: Arial; background:#fafafa; padding:20px; }
+        .gallery { display:flex; flex-wrap:wrap; gap:15px; margin-top:20px; }
+        .item { width:250px; border:1px solid #ccc; padding:10px; background:white; position:relative; }
+        .item img { width:100%; height:auto; }
+        .favori-btn {
+            position:absolute;
+            top:8px;
+            right:8px;
+            font-size:26px;
+            cursor:pointer;
+        }
+        .favori-on { color: gold; }
+        .favori-off { color: #aaa; }
+    </style>
+
+    <script>
+        function toggleFavori(id) {
+            fetch("/favori/" + id)
+                .then(() => { location.reload(); });
+        }
+    </script>
+</head>
+
+<body>
+
+<h1>Galerie du Nichoir Connecté</h1>
+
+<!-- FORMULAIRE DE FILTRE -->
+<form method="GET" style="display:flex; gap:20px; flex-wrap:wrap; margin-bottom:20px;">
+
+    <div>
+        <label>Appareil :</label><br>
+        <select name="appareil">
+            <option value="">Tous</option>
+            {% for a in appareils %}
+                <option value="{{ a.id }}">{{ a.emplacement }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div>
+        <label>Date ≥ :</label><br>
+        <input type="date" name="date_min">
+    </div>
+
+    <div>
+        <label>Date ≤ :</label><br>
+        <input type="date" name="date_max">
+    </div>
+
+    <div>
+        <label>Favoris :</label><br>
+        <input type="checkbox" name="favoris" value="1">
+    </div>
+
+    <button type="submit">Filtrer</button>
+
+</form>
+
+<hr>
+
+<!-- GALERIE -->
+<div class="gallery">
+
+    {% for row in donnees %}
+        <div class="item">
+
+            <!-- Bouton favori -->
+            <span class="favori-btn {% if row.favori %}favori-on{% else %}favori-off{% endif %}"
+                  onclick="toggleFavori({{ row.id }})">
+                ★
+            </span>
+
+            {% if row.chemin_photo %}
+                <a href="/detail/{{ row.id }}">
+                    <img src="/photo/{{ row.chemin_photo.split('/')[-1] }}">
+                </a>
+            {% else %}
+                <p><i>Pas de photo</i></p>
+            {% endif %}
+
+            <div class="info">
+                <b>Date :</b> {{ row.date_heure }}<br>
+                <b>Batterie :</b> {{ row.niveau_batterie }} V<br>
+                <b>Appareil :</b> {{ row.emplacement }}
+            </div>
+
+        </div>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
