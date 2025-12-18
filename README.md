@@ -45,7 +45,7 @@ Le boîtier du **Nichoir Connecté** a été conçu pour être résistant aux in
 
 Le schéma de câblage montre comment les composants du **Nichoir Connecté** sont connectés, y compris l'ESP32 TimerCam, le capteur PIR, et les autres modules électroniques.
 
-*Image du schéma de câblage à insérer ici.*
+![PCBBottom](graphics/PCBSchematic.png)
 
 ---
 
