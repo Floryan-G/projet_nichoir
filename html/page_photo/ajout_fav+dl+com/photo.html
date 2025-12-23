@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Détail photo</title>
+</head>
+<body>
+
+    <h2>Détail de la capture</h2>
+
+    {% if data.chemin_photo %}
+        <!-- Affiche la photo -->
+        <img src="/photo/{{ data.chemin_photo.split('/')[-1] }}" style="width:40%;"><br><br>
+
+        <!-- Bouton pour télécharger la photo -->
+        <a href="/photo/{{ data.chemin_photo.split('/')[-1] }}" download>
+            Télécharger la photo
+        </a>
+        <br><br>
+    {% else %}
+        <p>Aucune photo pour cette entrée.</p>
+    {% endif %}
+
+    <!-- Bouton favoris -->
+    <p>
+        {% if data.favori %}
+            <a href="/photo_favori/{{ data.id }}">★ Retirer des favoris</a>
+        {% else %}
+            <a href="/photo_favori/{{ data.id }}">☆ Ajouter aux favoris</a>
+        {% endif %}
+    </p>
+
+    <!-- Informations supplémentaires -->
+    <p><b>Date :</b> {{ data.date_heure }}</p>
+    <p><b>Batterie :</b> {{ data.niveau_batterie }} V</p>
+    <p><b>Appareil :</b> {{ data.emplacement }}
+       (Service : {{ "ON" if data.en_service else "OFF" }})</p>
+
+    <!-- Description si elle existe -->
+    {% if data.description %}
+        <p><b>Description :</b> {{ data.description }}</p>
+    {% endif %}
+
+    <br>
+    <a href="/">Retour à la galerie</a>
+
+</body>
+</html>
