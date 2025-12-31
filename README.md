@@ -63,10 +63,10 @@ Le système est composé de trois grandes briques :
 
 Le Nichoir Connecté adopte un fonctionnement **événementiel** :
 
-- **Hibernation / Deep Sleep**  
+- **Hibernation**  
   - État principal du système  
   - ESP32 arrêté, RTC actif  
-  - Consommation mesurée : **≈ 20–30 µA**
+  - Consommation mesurée : **≈ 3 µA**
 
 - **Réveil par interruption PIR**  
   - Capture d’image
@@ -82,21 +82,18 @@ Cette stratégie permet une **autonomie de plusieurs mois**, malgré des phases 
 ---
 
 ## 🧱 Boîtier
-
+https://github.com/Floryan-G/projet_nichoir/tree/main/3D
 Le boîtier a été conçu spécifiquement pour une utilisation extérieure :
 
 - Impression 3D en **PETG** (résistant aux UV et à l’humidité)
 - Intégration compacte de l’électronique
-- Positionnement optimisé :
-  - Caméra orientée vers l’entrée du nichoir
-  - PIR placé pour limiter les faux positifs
 
 ![BoxV2Design](graphics/BoxV2Design.png)
 
 ---
 
 ## 🔌 Schéma électrique
-
+https://github.com/Floryan-G/projet_nichoir/tree/main/PcbNichoir
 Le schéma de câblage présente :
 - l’ESP32 TimerCam
 - le capteur PIR
@@ -108,7 +105,7 @@ Le schéma de câblage présente :
 ---
 
 ## 🧩 PCB
-
+https://github.com/Floryan-G/projet_nichoir/tree/main/PcbNichoir
 Un PCB dédié a été développé afin d’améliorer :
 - la fiabilité électrique
 - la stabilité de la détection PIR
@@ -124,7 +121,7 @@ Un PCB dédié a été développé afin d’améliorer :
 Lors de la première mise sous tension :
 
 1. L’ESP32 démarre en **mode configuration**
-2. Création d’un point d’accès Wi-Fi : `Nichoir-Config`
+2. Création d’un point d’accès Wi-Fi : `NichoirGPT4`
 3. Connexion depuis un smartphone ou un PC
 4. Accès à une page web de configuration
 5. Saisie du SSID et du mot de passe Wi-Fi
@@ -136,7 +133,7 @@ Ce mode n’est utilisé **qu’une seule fois**, lors de l’installation.
 ---
 
 ## 🌐 Interface Web
-
+https://github.com/Floryan-G/projet_nichoir/tree/main/html
 L’interface web permet de :
 - visualiser les images capturées
 - consulter l’historique des événements
@@ -148,7 +145,7 @@ L’interface web permet de :
 ## 🚀 Améliorations envisagées
 
 - Support de **plusieurs nichoirs**
-- Réseau maillé (communication sans Wi-Fi permanent)
+- Réseau maillé XBEE (communication sans Wi-Fi permanent)
 - Ajout d’un capteur environnemental (température, humidité, CO₂)
 - Alimentation par panneau solaire
 - Méthodes de configuration alternatives (QR Code / NFC)
