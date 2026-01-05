@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo #{{ data.id }}</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+
+        body { font-family: 'Segoe UI', sans-serif; background: #222; color: white; display: flex; height: 100vh; margin: 0; overflow: hidden; }
+        
+        .image-container { flex: 1; display: flex; align-items: center; justify-content: center; background: black; position: relative; height: 100%; overflow: hidden; }
+        .image-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        
+        .info-panel { 
+            width: 350px; 
+            min-width: 300px;
+            padding: 30px; 
+            background: #2c3e50; 
+            display: flex; 
+            flex-direction: column; 
+            box-shadow: -5px 0 15px rgba(0,0,0,0.3); 
+            overflow-y: auto;
+            z-index: 10;
+        }
+        
+        h2 { border-bottom: 1px solid #555; padding-bottom: 20px; margin-bottom: 20px; font-weight: 300; letter-spacing: 1px; margin-top: 0; }
+        
+        .data-row { margin-bottom: 20px; }
+        .label { color: #95a5a6; font-size: 0.8em; text-transform: uppercase; display: block; margin-bottom: 4px; letter-spacing: 1px;}
+        .value { font-size: 1.1em; font-weight: 500; }
+        
+        .spacer { flex-grow: 1; }
+
+        .action-buttons { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+
+        .btn { 
+            display: block; 
+            padding: 12px; 
+            text-align: center; 
+            text-decoration: none; 
+            border-radius: 6px; 
+            font-weight: bold; 
+            transition: 0.2s; 
+            border:none; 
+            cursor: pointer; 
+            width: 100%; 
+            font-size: 0.95rem; 
+            font-family: inherit;
+        }
+
+        .btn-download { background: #27ae60; color: white; }
+        .btn-download:hover { background: #2ecc71; }
+        
+        .btn-back { background: rgba(255,255,255,0.1); color: #ddd; }
+        .btn-back:hover { background: rgba(255,255,255,0.2); }
+        
+        .btn-fav { background: #f1c40f; color: #2c3e50; }
+        .btn-fav:hover { background: #f39c12; }
+        
+        .btn-fav-off { background: #7f8c8d; color: white; }
+        .btn-fav-off:hover { background: #95a5a6; }
+
+        @media (max-width: 900px) {
+            body { flex-direction: column; height: auto; overflow-y: auto; overflow-x: hidden; }
+            .image-container { width: 100%; height: 50vh; flex: none; }
+            .info-panel { width: 100%; flex: none; padding: 20px; box-shadow: none; height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="image-container">
+        {% if data.chemin_photo %}
+            <img src="/photo/{{ data.chemin_photo.split('/')[-1] }}">
+        {% else %}
+            <p>Image introuvable</p>
+        {% endif %}
+    </div>
+
+    <div class="info-panel">
+        <h2><i class="fas fa-camera"></i> Détails</h2>
+
+        <div class="data-row">
+            <span class="label">Date</span>
+            <div class="value">{{ data.date_heure }}</div>
+        </div>
+
+        <div class="data-row">
+            <span class="label">Batterie</span>
+            <div class="value">
+                {% if data.niveau_batterie < 10 %}
+                    <i class="fas fa-battery-empty" style="color:#e74c3c"></i> <span style="color:#e74c3c">{{ data.niveau_batterie }}%</span>
+                {% elif data.niveau_batterie < 25 %}
+                    <i class="fas fa-battery-quarter" style="color:#f39c12"></i> <span style="color:#f39c12">{{ data.niveau_batterie }}%</span>
+                {% else %}
+                    <i class="fas fa-battery-full" style="color:#2ecc71"></i> <span style="color:#2ecc71">{{ data.niveau_batterie }}%</span>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="data-row">
+            <span class="label">Appareil</span>
+            <div class="value">
+                {{ data.nom }}
+                {% if data.en_service %}
+                    <span style="font-size:0.6em; background:#27ae60; padding:2px 6px; border-radius:4px; vertical-align:middle; margin-left:5px;">ACTIF</span>
+                {% else %}
+                    <span style="font-size:0.6em; background:#e74c3c; padding:2px 6px; border-radius:4px; vertical-align:middle; margin-left:5px;">INACTIF</span>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="data-row">
+            <span class="label">Emplacement</span>
+            <div class="value"><i class="fas fa-map-marker-alt"></i> {{ data.emplacement }}</div>
+        </div>
+
+        <div class="data-row">
+            <span class="label">Description</span>
+            <div class="value" style="font-style: italic; font-size: 0.9em; opacity: 0.8;">
+                {{ data.description if data.description else "Aucune description" }}
+            </div>
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="action-buttons">
+            <button id="favBtn" class="btn {% if data.favori %}btn-fav{% else %}btn-fav-off{% endif %}" onclick="toggleFavori({{ data.id }})">
+                {% if data.favori %}★ Retirer des favoris{% else %}☆ Ajouter aux favoris{% endif %}
+            </button>
+
+            {% if data.chemin_photo %}
+                <a href="/photo/{{ data.chemin_photo.split('/')[-1] }}" download class="btn btn-download">
+                    <i class="fas fa-download"></i> Télécharger l'image
+                </a>
+            {% endif %}
+
+            <a href="/" class="btn btn-back">⬅ Retour à la galerie</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleFavori(id) {
+            const btn = document.getElementById('favBtn');
+            
+            fetch('/api/favori/' + id, { method: 'POST' })
+            .then(response => response.json())
+            .then(data => { 
+                if (data.success) {
+                    if (data.nouvel_etat == 1) {
+                        btn.className = 'btn btn-fav';
+                        btn.innerHTML = '★ Retirer des favoris';
+                    } else {
+                        btn.className = 'btn btn-fav-off';
+                        btn.innerHTML = '☆ Ajouter aux favoris';
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

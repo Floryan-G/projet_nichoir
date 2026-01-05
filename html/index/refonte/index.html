@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie Nichoir</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f6f8; margin: 0; padding: 0; color:#333; }
+        
+        .navbar {
+            background: #ffffff; padding: 10px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 100;
+        }
+        .brand { font-size: 1.4em; font-weight: bold; color: #2c3e50; }
+        .nav-tools { display: flex; align-items: center; gap: 15px; }
+
+        .btn-config { background: #34495e; color: white; text-decoration: none; padding: 8px 12px; border-radius: 5px; font-size: 0.9em; }
+        .battery-badge { padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 0.85em; color: white; display: flex; gap: 6px; }
+
+        .container { padding: 20px; max-width: 1600px; margin: 0 auto; }
+
+        .toggle-filters-btn {
+            background: #dfe6e9; border: none; padding: 10px 20px; width: 100%; text-align: left;
+            font-weight: bold; color: #2c3e50; border-radius: 8px; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
+        }
+        .toggle-filters-btn:hover { background: #ced6e0; }
+
+        .filters-wrapper {
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .filters {
+            background: white; padding: 15px; border-radius: 8px; margin-bottom: 20px;
+            border: 1px solid #e1e4e8;
+            display: flex; align-items: center; gap: 15px; flex-wrap: wrap;
+        }
+
+        .filter-group { display: flex; flex-direction: column; gap: 2px; }
+        .filter-group label { font-size: 0.75em; color: #7f8c8d; font-weight: bold; text-transform: uppercase; }
+        
+        .filter-group select, .filter-group input[type="date"] {
+            padding: 6px; border: 1px solid #dfe6e9; border-radius: 4px;
+            background: #fff; height: 35px; min-width: 140px;
+        }
+
+        .radio-container {
+            display: flex; gap: 10px; align-items: center; height: 35px;
+            background: #f8f9fa; padding: 0 10px; border-radius: 4px; border: 1px solid #dfe6e9;
+        }
+        .radio-label { font-size: 0.9em; cursor: pointer; display: flex; align-items: center; gap: 5px; margin: 0; white-space: nowrap; }
+
+        #bloc-periode, #bloc-exact { display: flex; gap: 10px; }
+        .checkbox-container { display: flex; align-items: center; gap: 5px; cursor: pointer; height: 35px; padding-top: 15px; }
+
+        .actions-group { display: flex; gap: 10px; align-items: center; height: 35px; margin-top: 17px; }
+        .btn-filter { background: #3498db; color: white; border: none; padding: 0 20px; border-radius: 4px; cursor: pointer; font-weight: bold; height: 100%; }
+        .btn-reset { color: #95a5a6; text-decoration: none; font-size: 0.9em; }
+
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: relative; border: 1px solid #eee; transition: transform 0.2s; }
+        .card:hover { transform: translateY(-3px); }
+        .card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .card-info { padding: 15px; }
+        .star-btn { position: absolute; top: 10px; right: 10px; font-size: 24px; cursor: pointer; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3)); }
+        .star-on { color: #f1c40f; } .star-off { color: rgba(255,255,255,0.9); stroke: black; stroke-width: 1px; }
+
+        @media (max-width: 768px) {
+            .filters { flex-direction: column; align-items: stretch; gap: 15px; }
+            .filter-group, .filter-group input, .filter-group select { width: 100%; }
+            
+            .radio-container { 
+                width: 100%; 
+                height: auto;
+                padding: 10px;
+                justify-content: space-around;
+                box-sizing: border-box;
+            }
+
+            .actions-group { flex-direction: column; width: 100%; margin-top: 0; height: auto; }
+            .btn-filter { width: 100%; padding: 12px; }
+            .checkbox-container { padding-top: 0; margin-bottom: 10px; }
+            #bloc-periode { flex-direction: column; width: 100%; }
+            .gallery { grid-template-columns: 1fr; }
+            .navbar { flex-direction: column; gap: 10px; }
+            .toggle-filters-btn { text-align: center; justify-content: center; }
+            .actions-group { margin-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="brand"><i class="fas fa-crow"></i> Nichoir Cam</div>
+        <div class="nav-tools">
+             <a href="/config" class="btn-config"><i class="fas fa-sliders-h"></i> Config</a>
+            {% if derniere_batterie != 'N/A' %}
+                <div class="battery-badge" style="background-color: {% if derniere_batterie < 10 %}#e74c3c{% elif derniere_batterie < 25 %}#f39c12{% else %}#27ae60{% endif %};">
+                    <i class="fas {% if derniere_batterie < 10 %}fa-battery-empty{% elif derniere_batterie < 25 %}fa-battery-quarter{% else %}fa-battery-half{% endif %}"></i>
+                    <span>{{ derniere_batterie }}%</span>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <button class="toggle-filters-btn" onclick="toggleFilterDiv()">
+            <span><i class="fas fa-filter"></i> Filtrer les photos</span>
+            <i class="fas fa-chevron-down" id="chevron-icon"></i>
+        </button>
+
+        <div class="filters-wrapper" id="filters-wrapper" style="max-height: 0px;">
+            <form class="filters" method="GET" action="/">
+                
+                <div class="filter-group">
+                    <label>Appareil</label>
+                    <select name="appareil">
+                        <option value="">Tous les nichoirs</option>
+                        {% for a in appareils %}
+                            <option value="{{ a.id }}" {% if request.args.get('appareil') == a.id|string %}selected{% endif %}>{{ a.nom }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Mode</label>
+                    <div class="radio-container">
+                        <label class="radio-label"><input type="radio" name="mode_date" value="periode" checked onclick="toggleDateMode('periode')"> Période</label>
+                        <label class="radio-label"><input type="radio" name="mode_date" value="exact" {% if request.args.get('mode_date') == 'exact' %}checked{% endif %} onclick="toggleDateMode('exact')"> Date</label>
+                    </div>
+                </div>
+
+                <div id="bloc-periode">
+                    <div class="filter-group"><label>Du</label><input type="date" name="date_min" value="{{ request.args.get('date_min', '') }}"></div>
+                    <div class="filter-group"><label>Au</label><input type="date" name="date_max" value="{{ request.args.get('date_max', '') }}"></div>
+                </div>
+                
+                <div id="bloc-exact" style="display:none;">
+                    <div class="filter-group">
+                        <label>Date précise</label>
+                        <input type="date" name="date_exacte" value="{{ request.args.get('date_exacte', '') }}">
+                    </div>
+                </div>
+
+                <label class="checkbox-container">
+                    <input type="checkbox" name="favoris" value="1" {% if request.args.get('favoris') %}checked{% endif %}> <span>★ Favoris</span>
+                </label>
+
+                <div class="actions-group">
+                    <button type="submit" class="btn-filter">Appliquer</button>
+                    <a href="/" class="btn-reset">Reset</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="gallery">
+            {% for row in donnees %}
+            <div class="card">
+                <div class="star-btn {% if row.favori %}star-on{% else %}star-off{% endif %}" onclick="toggleFavori(event, {{ row.id }})" id="star-{{ row.id }}">★</div>
+                <a href="/detail/{{ row.id }}">
+                    <img src="/photo/{{ row.chemin_photo.split('/')[-1] }}" loading="lazy">
+                </a>
+                <div class="card-info">
+                    <div style="font-weight:bold; color:#2c3e50;">{{ row.nom }}</div>
+                    <div style="font-size:0.85em; color:#7f8c8d; display:flex; justify-content:space-between; margin-top:5px;">
+                        <span>{{ row.date_heure }}</span>
+                        <span style="color:{% if row.niveau_batterie<20 %}#e74c3c{% else %}#27ae60{% endif %}">{{ row.niveau_batterie }}%</span>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+                <p style="grid-column: 1/-1; text-align:center; padding:40px; color:#aaa;">Aucune photo trouvée.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        function toggleDateMode(mode) {
+            const bp = document.getElementById('bloc-periode');
+            const be = document.getElementById('bloc-exact');
+            if(mode==='exact'){ bp.style.display='none'; be.style.display='flex'; }
+            else{ bp.style.display='flex'; be.style.display='none'; }
+        }
+
+        function toggleFilterDiv() {
+            const wrapper = document.getElementById('filters-wrapper');
+            const icon = document.getElementById('chevron-icon');
+            
+            if (wrapper.style.maxHeight === '0px' || wrapper.style.maxHeight === '') {
+                wrapper.style.maxHeight = '1000px';
+                icon.className = 'fas fa-chevron-up';
+            } else {
+                wrapper.style.maxHeight = '0px';
+                icon.className = 'fas fa-chevron-down';
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const exactRadio = document.querySelector('input[name="mode_date"][value="exact"]');
+            if(exactRadio && exactRadio.checked) toggleDateMode('exact');
+            else toggleDateMode('periode');
+        });
+
+        function toggleFavori(event, id) {
+            event.preventDefault(); event.stopPropagation();
+            fetch('/api/favori/' + id, { method: 'POST' }).then(r=>r.json()).then(d=>{
+                if(d.success){
+                    let el = document.getElementById('star-'+id);
+                    if(d.nouvel_etat==1){ el.classList.remove('star-off'); el.classList.add('star-on'); }
+                    else{ el.classList.remove('star-on'); el.classList.add('star-off'); }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
