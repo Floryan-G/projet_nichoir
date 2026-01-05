@@ -1,76 +1,166 @@
-# projet_nichoir
-# Nichoir Connecté
+# 🐦 Nichoir Connecté – Projet SmartCities & IoT
 
-## Description
 ![Logo](graphics/Logo.png)
-Le projet **NichoirGPT4** est un dispositif IoT destiné à surveiller l'activité d'un nichoir pour oiseaux. Ce système utilise un **M5StackTimerCam** pour capturer des images et envoyer ces données à un serveur via le protocole **MQTT**. Les images et les données sont stockées dans une base de données **MariaDB** et peuvent être consultées via une interface web dédiée.
 
-### Objectif
+## 📖 Description générale
 
-L'objectif principal du projet est de fournir un moyen simple et fiable de suivre les activités des oiseaux dans un nichoir connecté. Le système permet également une gestion de la batterie, avec la possibilité de récupérer des informations sur l'état de la connexion sans fil et l'historique des captures photo.
+Le **Nichoir Connecté** est un système **IoT autonome à très basse consommation** destiné à surveiller l’activité d’un nichoir pour oiseaux.  
+Il s’inscrit dans un contexte **SmartCities / objets connectés**, où l’optimisation énergétique, la fiabilité et la collecte intelligente de données sont essentielles.
 
-## Fonctionnalités
-
-- **Capture d'images** .
-- **Surveillance de la batterie** et des événements via le **PIR sensor** (détection de présence).
-- **Envoi des données** (images, niveau de batterie, signal, etc.) via **MQTT**.
-- **Stockage des données** dans une **base de données MariaDB**.
-- **Interface web** pour consulter les images et leurs informations associées.
-- **Gestion de l'activation** du système en fonction de la détection de mouvement ou à des intervalles réguliers.
+Le système repose sur un **ESP32 M5Stack TimerCam**, associé à un capteur PIR, une LED infrarouge et une batterie.  
+Il capture des images uniquement lorsqu’un événement pertinent est détecté et transmet les données via **MQTT** vers une passerelle **Raspberry Pi**, où elles sont stockées dans une base **MariaDB** et consultables via une **interface web**.
 
 ---
 
-## Sections
+## 🎯 Objectifs du projet
 
-### Fonctionnalités à venir
-
-Ajoute une description des futures améliorations ou fonctionnalités prévues ici, par exemple :
-
-- **Support pour plusieurs nichoirs** : la gestion d'un réseau de nichoirs connectés.
-- **Notifications push** pour alerter l'utilisateur en cas d'activité dans le nichoir.
+- Surveiller automatiquement l’activité d’un nichoir
+- Minimiser la consommation énergétique grâce à l’hibernation
+- Capturer et transmettre des images uniquement lors d’événements utiles
+- Centraliser et historiser les données
+- Offrir une interface web simple pour la consultation
+- Garantir une autonomie de plusieurs mois sur batterie
 
 ---
 
-## Boîtier
+## 🧠 Architecture globale
 
-Le boîtier du **Nichoir Connecté** a été conçu pour être résistant aux intempéries et permettre un montage facile sur un arbre ou dans un environnement extérieur. 
+Le système est composé de trois grandes briques :
 
-- **Matériau** : Boîtier en PETG résistant aux UV et aux intempéries.
-- **Emplacement des composants** : L'ESP32 TimerCam, la batterie et le capteur PIR sont intégrés à l'intérieur du boîtier pour une protection optimale.
+1. **Nœud embarqué (Nichoir)**
+   - ESP32 M5Stack TimerCam
+   - Capteur PIR
+   - LED infrarouge
+   - Batterie LiPo
+   - Gestion avancée du sommeil (Deep Sleep / Hibernation)
+
+2. **Passerelle**
+   - Raspberry Pi
+   - Broker MQTT
+   - Traitement des messages entrants
+
+3. **Stockage & Interface**
+   - Base de données MariaDB
+   - Interface web de visualisation
+
+---
+
+## ⚙️ Fonctionnalités principales
+
+- 📷 Capture d’images déclenchée par détection de mouvement (PIR)
+- 🔋 Surveillance du niveau de batterie avec envoi périodique (1 fois par jour)
+- 📡 Transmission des données via le protocole MQTT
+- 🗄️ Stockage structuré des images et métadonnées dans MariaDB
+- 🌐 Interface web pour la consultation des données
+- 😴 Gestion énergétique avancée :
+  - Deep Sleep avec réveil par interruption externe
+  - Activation du Wi-Fi uniquement lorsque nécessaire
+  - Hibernation globale du système
+
+---
+
+## 🔋 Gestion de l’énergie (point clé du projet)
+
+Le Nichoir Connecté adopte un fonctionnement **événementiel** :
+
+- **Hibernation**  
+  - État principal du système  
+  - ESP32 arrêté, RTC actif  
+  - Consommation mesurée : **≈ 3 µA**
+
+- **Réveil par interruption PIR**  
+  - Capture d’image
+  - Transmission des données
+  - Retour immédiat en hibernation
+
+- **Réveil périodique (1× / jour)**  
+  - Mesure et envoi du niveau de batterie
+  - Impact énergétique négligeable
+
+Cette stratégie permet une **autonomie de plusieurs mois**, malgré des phases ponctuelles très consommatrices (Wi-Fi).
+
+---
+
+## 🧱 Boîtier
+https://github.com/Floryan-G/projet_nichoir/tree/main/3D
+Le boîtier a été conçu spécifiquement pour une utilisation extérieure :
+
+- Impression 3D en **PETG** (résistant aux UV et à l’humidité)
+- Intégration compacte de l’électronique
 
 ![BoxV2Design](graphics/BoxV2Design.png)
----
-
-## Schéma
-
-Le schéma de câblage montre comment les composants du **Nichoir Connecté** sont connectés, y compris l'ESP32 TimerCam, le capteur PIR, et les autres modules électroniques.
-
-*Image du schéma de câblage à insérer ici.*
 
 ---
 
-## PCB
+## 🔌 Schéma électrique
+https://github.com/Floryan-G/projet_nichoir/tree/main/PcbNichoir
+Le schéma de câblage présente :
+- l’ESP32 TimerCam
+- le capteur PIR
+- la LED infrarouge pilotée
+- la gestion de l’alimentation
 
-Le PCB (circuit imprimé) a été conçu pour assurer une connectivité stable et une gestion efficace de l'alimentation. Ce circuit imprime permet de connecter tous les composants électroniques du nichoir de manière compacte et organisée.
+![PCBSchematic](graphics/PCBSchematic.png)
+
+---
+
+## 🧩 PCB
+https://github.com/Floryan-G/projet_nichoir/tree/main/PcbNichoir
+Un PCB dédié a été développé afin d’améliorer :
+- la fiabilité électrique
+- la stabilité de la détection PIR
+- la reproductibilité du système
 
 ![PCBTop](graphics/PCBTop.png)
 ![PCBBottom](graphics/PCBBottom.png)
----
-
-
-## Première Connexion
-
-Lors de la première connexion du **Nichoir Connecté** à votre réseau, le système crée un point d'accès Wi-Fi pour la configuration. Suivez ces étapes :
-
-1. **Allumez le Nichoir** : Lorsque vous allumez le système pour la première fois, l'ESP32 se met en mode **Access Point (AP)** et crée un réseau Wi-Fi nommé "Nichoir-Config".
-2. **Connectez-vous à ce réseau Wi-Fi** : Sur votre ordinateur ou smartphone, connectez-vous au réseau **"NichoirGPT4"**.
-3. **Accédez à la page de configuration** : Une fois connecté au réseau, une page devrait s'ouvrir
-4. **Configurez les paramètres Wi-Fi** : Dans l'interface web, entrez les informations de votre réseau Wi-Fi (SSID et mot de passe).
-5. **Redémarrez le système** : Une fois la configuration terminée, cliquez sur le bouton "Sauvegarder" et redémarrez le dispositif. Il se connectera automatiquement à votre réseau Wi-Fi et au broker MQTT.
 
 ---
 
-## Site Internet
+## 🔑 Première connexion (configuration Wi-Fi)
 
-Le projet inclut une interface web qui vous permet de visualiser les photos capturées et d'accéder aux données stockées dans la base de données MariaDB. Voici comment configurer et utiliser le site internet :
+Lors de la première mise sous tension :
+
+1. L’ESP32 démarre en **mode configuration**
+2. Création d’un point d’accès Wi-Fi : `NichoirGPT4`
+3. Connexion depuis un smartphone ou un PC
+4. Accès à une page web de configuration
+5. Saisie du SSID et du mot de passe Wi-Fi
+6. Sauvegarde en mémoire non volatile
+7. Redémarrage automatique du système
+
+Ce mode n’est utilisé **qu’une seule fois**, lors de l’installation.
+
+---
+
+## 🌐 Interface Web
+https://github.com/Floryan-G/projet_nichoir/tree/main/html
+L’interface web permet de :
+- visualiser les images capturées
+- consulter l’historique des événements
+- afficher le niveau de batterie
+- analyser l’activité du nichoir dans le temps
+
+---
+
+## 🚀 Améliorations envisagées
+
+- Support de **plusieurs nichoirs**
+- Réseau maillé XBEE (communication sans Wi-Fi permanent)
+- Ajout d’un capteur environnemental (température, humidité, CO₂)
+- Alimentation par panneau solaire
+- Méthodes de configuration alternatives (QR Code / NFC)
+
+---
+
+## 📚 Contexte académique
+
+Ce projet a été réalisé dans le cadre du cours **SmartCities & IoT**  
+et vise à valider les compétences liées à :
+- la conception de systèmes embarqués
+- la gestion énergétique
+- l’intégration hardware / software
+- la communication IoT
+- la fiabilité et la documentation technique
+
+---
 
